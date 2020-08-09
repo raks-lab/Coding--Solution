@@ -1,0 +1,50 @@
+
+/*created by Raksha nijaguna*/
+
+import java.util.Scanner;
+
+public class Palindrome{
+    public static boolean palindrome(int n) {
+        int reverse=0,num=n;
+        if(num<0) 
+        num=num*-1;
+        while(num!=0)
+        {
+            reverse=reverse*10;
+            reverse=reverse+num%10;
+            num=num/10;
+        }
+        return (reverse==n);
+    }
+public static int getsum(int n){
+    String string=Integer.toString(n);
+    StringBuilder sb=new StringBuilder();
+    for(int i=0;i<string.length()-1;i+=2) {
+        int i1=Integer.parseInt(Character.toString(string.charAt(i)));
+        int i2=Integer.parseInt(Character.toString(string.charAt(i+1)));
+        int num=i1+i2;
+        sb.append(Integer.toString(num));
+        
+        
+    }
+    return Integer.parseInt(sb.toString());
+}
+
+public static boolean CheckifPalindrome(int n){
+    boolean is=false;
+    while(n>9){
+        if(palindrome(n)) {
+            is=true;
+            break;
+        }
+        n=getsum(n);
+    }
+    return is;
+}
+     public static void main(String []args){
+         System.out.println("Enter number");
+         Scanner scanner=new Scanner(System.in);
+         int n=scanner.nextInt();
+         System.out.println(CheckifPalindrome(n));
+     }
+}

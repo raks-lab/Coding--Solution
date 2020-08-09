@@ -1,0 +1,49 @@
+
+/*created by Raksha nijaguna*/
+
+import java.util.Scanner;
+import java.util.*;
+
+public class LongestWord{
+    
+    public static String[] longest(String str){
+        LinkedHashMap<String,Integer> map=new LinkedHashMap<>();
+        ArrayList<String> res=new ArrayList<>();
+        ArrayList<String> words=new ArrayList<>();
+        words.addAll(Arrays.asList(str.split(" ")));
+        
+        words.forEach((word) -> {
+            map.put(word,word.length());
+        });
+        
+        int k=0;
+        int num=1;
+        while(k++ <3 ){
+            try {
+                int max=Collections.max(map.values());
+                for(String word : words){
+                    if(word.length()== max && num <=3) {
+                        res.add("#" + word
+                        .replaceAll("\\p{Punct}",""));
+                        map.remove(word);
+                        num++;
+                    }
+                }
+            } catch (NoSuchElementException e) {}
+        }
+        return res.toArray(new String[res.size()]);
+    }
+        
+        
+    
+    
+ 
+
+     public static void main(String []args){
+         System.out.println("Enter Sentence");
+         Scanner scanner=new Scanner(System.in);
+         String str=scanner.nextLine();
+         String[] str1=longest(str);
+         System.out.println(Arrays.toString(str1));
+     }
+}
